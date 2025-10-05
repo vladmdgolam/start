@@ -23,4 +23,50 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 8px;
+  font-size: 22px;
+  line-height: 1.1515;
+}
+
+main.page {
+  min-height: 100vh;
+}
+
+ol {
+  margin: 0;
+}
+
+ol.capitals {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ol.capitals > li {
+  margin-right: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+ol.capitals > li::after {
+  content: ", ";
+}
+
+ol.capitals > li:last-child::after {
+  content: "";
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.notice {
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 845px) {
+  body {
+    font-size: max(32px, 3.5vh);
+  }
 }
