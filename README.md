@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# R3F Starter Template
 
-## Getting Started
+Next.js + React Three Fiber template with reusable UI patterns for 3D projects.
 
-First, run the development server:
+## Features
+
+- React Three Fiber + Drei setup
+- Full-screen screenshot capture
+- Floating circular action buttons (iOS safe area aware)
+- Extensible component architecture
+
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  page.tsx          # Main scene with R3F Canvas
+components/
+  FloatingActions.tsx       # Container for floating buttons
+  FloatingActionButton.tsx  # Circular action button
+hooks/
+  useScreenshot.ts          # Full-screen canvas capture hook
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding Actions
 
-## Learn More
+```tsx
+import { FloatingActions } from '@/components/FloatingActions'
+import { FloatingActionButton } from '@/components/FloatingActionButton'
+import { Camera, Dices } from 'lucide-react'
 
-To learn more about Next.js, take a look at the following resources:
+<FloatingActions position="bottom-left">
+  <FloatingActionButton icon={<Camera className="h-6 w-6" />} onClick={handleScreenshot} />
+  <FloatingActionButton icon={<Dices className="h-6 w-6" />} onClick={randomize} variant="secondary" />
+</FloatingActions>
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Screenshot Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The screenshot captures full canvas dimensions (not cropped). Requires `preserveDrawingBuffer: true` on Canvas:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```tsx
+<Canvas gl={{ preserveDrawingBuffer: true }}>
+```
