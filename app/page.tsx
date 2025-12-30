@@ -2,10 +2,12 @@
 
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, Box, Sphere } from '@react-three/drei'
-import { useRef, useCallback, useImperativeHandle, forwardRef } from 'react'
+import { useRef, useCallback, useImperativeHandle, forwardRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Camera } from 'lucide-react'
+import { Leva, button, useControls } from 'leva'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 import { FloatingActions } from '@/components/FloatingActions'
 import { FloatingActionButton } from '@/components/FloatingActionButton'
@@ -67,6 +69,7 @@ function downloadDataUrl(dataUrl: string, filename: string) {
 
 export default function Home() {
   const sceneRef = useRef<SceneInnerRef>(null)
+  const [levaHidden, setLevaHidden] = useState(false)
 
   const handleScreenshot = useCallback(() => {
     const dataUrl = sceneRef.current?.getScreenshotDataUrl()
@@ -75,8 +78,16 @@ export default function Home() {
     }
   }, [])
 
+  useControls('Actions', {
+    Screenshot: button(() => handleScreenshot()),
+  })
+
+  useHotkeys('s', handleScreenshot, { enableOnFormTags: false })
+  useHotkeys('l', () => setLevaHidden((v) => !v), { enableOnFormTags: false })
+
   return (
     <div className="w-full h-screen">
+      <Leva hidden={levaHidden} collapsed />
       <Canvas gl={{ preserveDrawingBuffer: true }}>
         <SceneInner ref={sceneRef} />
       </Canvas>
