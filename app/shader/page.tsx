@@ -8,7 +8,7 @@ import { Circle } from '@/components/Circle'
 function Scene() {
   return (
     <>
-      <Circle i={0} position={[0, 0, 0]} scale={3} />
+      <Circle i={0} position={[0, 0, 0]} />
       <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
     </>
   )
@@ -19,7 +19,8 @@ export default function ShaderPage() {
     <div className="w-full h-screen bg-black">
       <Canvas
         gl={{ preserveDrawingBuffer: true }}
-        camera={{ position: [0, 0, 2], fov: 50 }}
+        orthographic
+        camera={{ zoom: 100, position: [0, 0, 1] }}
       >
         <Scene />
       </Canvas>

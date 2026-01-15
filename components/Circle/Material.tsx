@@ -49,17 +49,8 @@ declare global {
   namespace React {
     namespace JSX {
       interface IntrinsicElements {
-        customMaterial: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-          ref?: React.Ref<CustomMaterialType>
-          seed?: number
-          toneMapped?: boolean
-          blending?: number
-          alphaTest?: number
-          transparent?: boolean
-          time?: number
-          position?: [number, number]
-          attach?: string
-        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        customMaterial: any
       }
     }
   }

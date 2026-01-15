@@ -49,7 +49,7 @@ export const Circle = ({ i = 0, ...props }: CircleProps) => {
     <mesh key={CustomMaterial.key} {...props}>
       <planeGeometry />
       <customMaterial
-        ref={ref as React.Ref<unknown>}
+        ref={ref}
         seed={i}
         toneMapped={false}
         blending={NormalBlending}
