@@ -1,29 +1,11 @@
-'use client'
+import type { Metadata } from "next";
 
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { ShaderExperience } from "@/components/ShaderExperience";
 
-import { Circle } from '@/components/Circle'
-
-function Scene() {
-  return (
-    <>
-      <Circle i={0} position={[0, 0, 0]} />
-      <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
-    </>
-  )
-}
+export const metadata: Metadata = {
+  title: "Shader",
+};
 
 export default function ShaderPage() {
-  return (
-    <div className="w-full h-screen bg-black">
-      <Canvas
-        gl={{ preserveDrawingBuffer: true }}
-        orthographic
-        camera={{ zoom: 100, position: [0, 0, 1] }}
-      >
-        <Scene />
-      </Canvas>
-    </div>
-  )
+  return <ShaderExperience />;
 }

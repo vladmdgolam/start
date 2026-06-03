@@ -5,6 +5,8 @@ import { Color, ShaderMaterial } from "three"
 import { colors } from "@/constants/colors"
 import frag from "./frag"
 
+/* eslint-disable @typescript-eslint/no-namespace */
+
 const vert = /* glsl */ `
   varying vec2 vUv;
   void main() {
@@ -55,3 +57,4 @@ declare global {
     }
   }
 }
+/* eslint-enable @typescript-eslint/no-namespace */
